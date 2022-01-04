@@ -1,18 +1,20 @@
 import sys
 
+#This class relates to reading the input from for the cube file path
 class FileReader:
-    def __init__(self, filename):
-        self.fileInput = []
-        self.filename = filename
 
+    #filename -> string holding the filename and path
+    def __init__(self, filename):
+        self.fileInput = [] #2D list holding all text in file
+        self.filename = filename 
+
+    #Checks if file exists and then reads input into 2D list - fileInput
     def read(self):
-        
         try:
             f = open(self.filename, "r")
 
         except IOError:
             print("File doesnt exist")
-            # f.close()
             quit()
 
         for line in f.readlines():
@@ -23,7 +25,7 @@ class FileReader:
         f.close()
         return self.fileInput
         
-
+    #Prints fileInput
     def print(self):
         print(self.fileInput)
     
@@ -32,10 +34,6 @@ def main():
     fileName = input("Give the Cube File Name ")
     readFile = FileReader(fileName)
     readFile.read()
-    # if len(sys.argv) ==2: readFile.read(sys.argv[1])
-    # else: print("Usage:", sys.argv[0], "filename")
-
-    # readFile.checkFormat()
     readFile.print()
 
 if __name__ == "__main__": main()

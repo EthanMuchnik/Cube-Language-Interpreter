@@ -76,36 +76,30 @@ class Runner:
     #Function that starts the code runner
     def startRunner(self):
         self.runnerSetup()
-        # self.printMod()
         self.moveLoop()
 
     #Function that finds finds first character to run
     def runnerSetup(self):
         self.initModMat()
+
         for row in range(self.size):
             for col in range(self.size):
                 if self.modMat[self.side.value][row][col] == '(':
                     self.pos.xCord = col
                     self.pos.yCord = row
-                    # print("init col is" + str(col))
-                    # print("init row is" + str(row))
                     return
-        #         print("did find")
-        # print("havent found it")
 
     #Function responsible for doing cursor moves and
     #interpreting the chars that cursor goes on.
     #It only finishes once toContinue becomes false
     def moveLoop(self):
         toContinue = True
+
         while toContinue:
             self.nextPos()
             toContinue = self.interpChar()
             print(f"aStack Print: {self.aStack}")
             print(f"opStack Print: {self.opStack}")
-            # print(self.direction)
-            # print(self.side)
-            # print("toContinue is " + str(toContinue) + "\n")
 
         print("Program has ended")
 
@@ -133,8 +127,8 @@ class Runner:
             else:
                 self.switchSides()
 
-    #Determines if the new position is in bounds of the 
-    #side that the previous position was on
+    #Determines if the new position is in bounds of the side that the previous position was on
+    # cord -> int representing either current yCord or xCord
     def inBounds(self, cord):
         if cord>=self.size or cord < 0:
             return False
@@ -148,14 +142,17 @@ class Runner:
                 self.direction = self.Directions.up
                 self.side = self.Sides.front
                 self.pos.yCord = self.size -1
+
             elif self.direction == self.Directions.left:
                 self.direction = self.Directions.right
                 self.pos.yCord = self.size -1 - self.pos.yCord
                 self.side = self.Sides.left
+
             elif self.direction == self.Directions.right:
                 self.direction = self.Directions.left
                 self.pos.yCord = self.size -1 - self.pos.yCord
                 self.side = self.Sides.right
+
             elif self.direction == self.Directions.down:
                 self.direction = self.Directions.down
                 self.side = self.Sides.back
@@ -167,89 +164,108 @@ class Runner:
                 self.side = self.Sides.back
                 self.pos.yCord = self.pos.xCord
                 self.pos.xCord = 0
+
             elif self.direction == self.Directions.left:
                 self.direction = self.Directions.right
                 self.side = self.Sides.bottom
                 self.pos.xCord = self.size - 1
+
             elif self.direction == self.Directions.right:
                 self.direction = self.Directions.right
                 self.side = self.Sides.top
                 self.pos.xCord = 0
+
             elif self.direction == self.Directions.down:
                 self.direction = self.Directions.right
                 self.side = self.Sides.front
                 self.pos.yCord = self.size -1 - self.pos.xCord
                 self.pos.xCord = 0 
+
         elif self.side == self.Sides.top:
             if self.direction == self.Directions.up:
                 self.direction = self.Directions.up
                 self.side = self.Sides.back
                 self.pos.yCord = self.size -1
+
             elif self.direction == self.Directions.left:
                 self.direction = self.Directions.left
                 self.side = self.Sides.left
                 self.pos.xCord = self.size -1
+
             elif self.direction == self.Directions.right:
                 self.direction = self.Directions.right
                 self.side = self.Sides.right
                 self.pos.xCord = 0
+
             elif self.direction == self.Directions.down:
                 self.direction = self.Directions.down
                 self.side = self.Sides.front
                 self.pos.yCord = 0
+
         elif self.side == self.Sides.right:
             if self.direction == self.Directions.up:
                 self.direction = self.Directions.left
                 self.side = self.Sides.back
                 self.pos.yCord = self.size -1 - self.pos.xCord
                 self.pos.xCord = self.size -1
+
             elif self.direction == self.Directions.left:
                 self.direction = self.Directions.left
                 self.side = self.Sides.top
                 self.pos.xCord = self.size - 1
+
             elif self.direction == self.Directions.right:
                 self.direction = self.Directions.left
                 self.side = self.Sides.bottom
                 self.pos.xCord = self.size - 1
+
             elif self.direction == self.Directions.down:
                 self.direction = self.Directions.left
                 self.side = self.Sides.front
                 self.pos.yCord = self.pos.xCord
                 self.pos.xCord = self.size -1
+
         elif self.side == self.Sides.front:
             if self.direction == self.Directions.up:
                 self.direction = self.Directions.up
                 self.side = self.Sides.top
                 self.pos.yCord = self.size -1
+
             elif self.direction == self.Directions.left:
                 self.direction = self.Directions.up
                 self.side = self.Sides.left
                 self.pos.xCord = self.size - self.pos.yCord -1
                 self.pos.yCord = 0
+
             elif self.direction == self.Directions.right:
                 self.direction = self.Directions.up
                 self.side = self.Sides.right
                 self.pos.xCord = self.pos.yCord
                 self.pos.yCord = self.size -1
+
             elif self.direction == self.Directions.down:
                 self.direction = self.Directions.down
                 self.side = self.Sides.bottom
                 self.pos.yCord = 0
+
         elif self.side == self.Sides.back:
             if self.direction == self.Directions.up:
                 self.direction = self.Directions.up
                 self.side = self.Sides.bottom 
                 self.pos.yCord = self.size -1
+
             elif self.direction == self.Directions.left:
                 self.direction = self.Directions.down
                 self.side = self.Sides.left
                 self.pos.xCord = self.pos.yCord
                 self.pos.yCord = self.size -1
+
             elif self.direction == self.Directions.right:
                 self.direction = self.Directions.down
                 self.side = self.Sides.right
                 self.pos.xCord = self.size - self.pos.yCord -1
                 self.pos.yCord = 0
+                
             elif self.direction == self.Directions.down:
                 self.direction = self.Directions.down
                 self.side = self.Sides.top
@@ -283,9 +299,6 @@ class Runner:
     # Interprets char at current position and applies relevant operation
     def interpChar(self):
         charAtPos = self.modMat[self.side.value][self.pos.yCord][self.pos.xCord]
-        # print("char at position is " + charAtPos)
-        # print("char at position is " + str(self.pos.yCord))
-        # print("char at position is " + str(self.pos.xCord))
         toCont = True
 
         #Do nothing if space
@@ -479,18 +492,11 @@ def main():
     fileName = input("Give the Cube File Name ")
     readFile = FileReader.FileReader(fileName)
     myMatrix = readFile.read()
-    # readFile.print()
 
     inter = FormatChecker.Interp(myMatrix)
     inter.Correct_Format()
-    # inter.i_print()
 
     runner = Runner(myMatrix,inter.size)
     runner.startRunner()
-    # if len(sys.argv) ==2: readFile.read(sys.argv[1])
-    # else: print("Usage:", sys.argv[0], "filename")
-
-    # readFile.checkFormat()
 
 if __name__ == "__main__": main()        
-            
