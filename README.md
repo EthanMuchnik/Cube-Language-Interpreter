@@ -44,7 +44,7 @@ Install Cube and Run Cube File
 ```
 $ git clone https://github.com/EthanMuchnik/Cube-Language-Interpreter.git
 $ cd Cube-Language-Interpreter/src
-$ python CodeRunner.py
+$ python3 CodeRunner.py
 ```
 Then enter your .cube or .dewy file name when prompted
 
