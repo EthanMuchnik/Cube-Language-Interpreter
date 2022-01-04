@@ -7,6 +7,12 @@ class Position:
         self.xCord = -1
         self.yCord = -1
 
+class ForLoop:
+    def __init__(self,xCord,yCord,iteration):
+        self.xCord = xCord
+        self.yCord = yCord
+        self.iteration = iteration
+
 class Runner:
     def __init__(self,inMat, size):
         self.inMat = inMat
@@ -18,6 +24,9 @@ class Runner:
         self.chars = []
 
         self.pos = Position()
+        self.aStackSelect = True
+        self.doOps = True
+        self.forLoops = []
         # self.side = 
         # self.direction = Directions
 
@@ -42,8 +51,10 @@ class Runner:
                 self.modMat[2][row][col] = self.inMat[row+(self.size+1)+1][col+(self.size+1)+1]
         
         for row in range(self.size):
+
             for col in range(self.size):
-                self.modMat[3][row][col] = self.inMat[row+(self.size+1)+1][(col+self.size+1)*2+1]
+                self.modMat[3][row][col] = self.inMat[row+(self.size+1)+1][col+(self.size+1)*2+1]
+    
 
         for row in range(self.size):
             for col in range(self.size):
@@ -65,11 +76,11 @@ class Runner:
                 if self.modMat[self.side.value][row][col] == '(':
                     self.pos.xCord = col
                     self.pos.yCord = row
-                    print("init col is" + str(col))
-                    print("init row is" + str(row))
+                    # print("init col is" + str(col))
+                    # print("init row is" + str(row))
                     return
-                print("did find")
-        print("havent found it")
+        #         print("did find")
+        # print("havent found it")
 
 
     def moveLoop(self):
@@ -77,9 +88,11 @@ class Runner:
         while toContinue:
             self.nextPos()
             toContinue = self.interpChar()
-            print(self.direction)
-            print(self.side)
-            print("toContinue is " + str(toContinue) + "\n")
+            print(f"aStack Print: {self.aStack}")
+            print(f"opStack Print: {self.opStack}")
+            # print(self.direction)
+            # print(self.side)
+            # print("toContinue is " + str(toContinue) + "\n")
 
         print("Program has ended")
 
@@ -225,9 +238,34 @@ class Runner:
                 self.side = self.Sides.top
                 self.pos.yCord = 0
 
+        self.simpleOps()
+
+    def simpleOps(self):
+        if(self.doOps):
+            opTop = int(self.aStack.pop())
+            opBottom = int(self.aStack.pop())
+            
+            if(self.opStack):
+                op = self.opStack.pop()
+                if(op== '*'):
+                    self.aStack.append(opTop*opBottom)
+                elif(op== '/'):
+                    self.aStack.append(opTop/opBottom)
+                elif(op== '+'):
+                    self.aStack.append(opTop+opBottom)
+                elif(op== '-'):
+                    self.aStack.append(opTop-opBottom)
+                elif(op== '%'):
+                    self.aStack.append(opTop%opBottom)
+        else:
+            pass
+        
+
+
+
     def interpChar(self):
         charAtPos = self.modMat[self.side.value][self.pos.yCord][self.pos.xCord]
-        print("char at position is " + charAtPos)
+        # print("char at position is " + charAtPos)
         # print("char at position is " + str(self.pos.yCord))
         # print("char at position is " + str(self.pos.xCord))
         toCont = True
@@ -246,7 +284,126 @@ class Runner:
             self.direction = self.Directions.down
             # print("dir changed to down")
         elif(charAtPos == ')'):
+            self.aStack = []
+            self.opStack = []
             toCont = False
+
+        elif(ord(charAtPos)>64 and ord(charAtPos)<123 and charAtPos != 'v'):
+            self.aStack.append(charAtPos)
+        
+        elif(ord(charAtPos)>47 and ord(charAtPos)<58):
+            self.aStack.append(charAtPos)
+        
+        elif(charAtPos == '~'):
+            self.aStack.append(' ')
+
+        elif(charAtPos == '%' or charAtPos == '*' or charAtPos == '/' or charAtPos == '+' or charAtPos == '-'):
+            self.opStack.append(charAtPos)
+
+        elif(charAtPos == '!'):
+            self.aStackSelect =  not self.aStackSelect
+        
+        elif(charAtPos == '"'):
+            self.doOps =  not self.doOps
+
+        elif(charAtPos == '='):
+            self.aStack[len(self.aStack)-1] = chr(int(self.aStack[len(self.aStack)-1]))
+
+        elif(charAtPos == '#'):
+            if(self.aStackSelect):
+                self.aStack.append(self.aStack[len(self.aStack)-1])
+            else:
+                self.opStack.append(self.aStack[len(self.opStack)-1])
+        elif(charAtPos == '&'):
+            if(self.aStackSelect):
+                self.aStack.pop()
+            else:
+                self.opStack.pop()
+        elif(charAtPos == '$'):
+            eleNum = int(self.aStack.pop())
+            if(self.aStackSelect):
+                self.aStack.append(self.aStack[len(self.aStack) - eleNum])
+            else:
+                self.opStack.append(self.opStack[len(self.opStack) - eleNum])
+        elif(charAtPos == '@'):
+            eleNum1 = int(self.aStack.pop())
+            eleNum2 = int(self.aStack.pop())
+            if(self.aStackSelect):
+                aSwap1 = self.aStack[(len(self.aStack) - eleNum1)]
+                aSwap2 = self.aStack[(len(self.aStack) - eleNum2)]
+                aTemp = aSwap1
+                
+                aSwap1 = aSwap2
+                aSwap2 = aTemp
+                self.aStack[(len(self.aStack) - eleNum1)] = aSwap1
+                self.aStack[(len(self.aStack) - eleNum2)] = aSwap2
+
+            else:
+                opSwap1 = self.opStack[len(self.aStack) - eleNum1]
+                opSwap2 = self.opStack[(len(self.aStack) - eleNum2)]
+                opTemp = opSwap1
+
+                opSwap1 = opSwap2
+                opSwap2 = opTemp
+
+                self.opStack[len(self.aStack) - eleNum1] = opSwap1 
+                self.opStack[(len(self.aStack) - eleNum2)] = opSwap2
+
+        
+        elif(charAtPos == '?'):
+            ifTop = int(self.aStack.pop())
+            ifBottom = int(self.aStack.pop())
+            
+            if(ifTop-ifBottom > 0):
+                self.direction = self.Directions((self.direction.value + 1)%4) 
+            elif(ifTop-ifBottom < 0):
+                self.direction = self.Directions((self.direction.value - 1)%4)
+            elif(ifTop-ifBottom == 0):
+                pass
+        
+        elif(charAtPos == ':'):
+            existingForLoops = [f for f in self.forLoops if f.xCord == self.pos.xCord and f.yCord == self.pos.yCord]
+            if len(existingForLoops)==1:
+                print("for loop already exists")
+                if(existingForLoops[0].iteration >0):
+                    self.direction = self.Directions((self.direction.value - 1)%4)
+                    existingForLoops[0].iteration -=1
+                else:
+                    self.forLoops.pop()
+            else:
+                print("made new for loop")
+                self.forLoops.append(ForLoop(self.pos.xCord,self.pos.yCord,int(self.aStack.pop())))
+                self.direction = self.Directions((self.direction.value - 1)%4)
+                self.forLoops[len(self.forLoops)-1].iteration -=1
+        
+        elif(charAtPos == ','):
+            cubInput = input("Input Needed")
+            for c in cubInput:
+                self.aStack.append(c)
+        
+        elif(charAtPos == ';'):
+            numToPop = int(self.aStack.pop())
+            for i in range(numToPop):
+                print(self.aStack.pop(), end = "")
+            print("")
+        
+        elif(charAtPos == '`'):
+            self.aStack = []
+            self.opStack = []
+
+        elif(charAtPos== '|'):
+            print("Hello World")
+        
+            
+
+
+
+
+        
+            
+
+
+                
 
         return toCont
     
@@ -268,8 +425,8 @@ class Runner:
     class Directions(enum.Enum):
         up = 0
         left = 1
-        right = 2
-        down = 3
+        down = 2
+        right = 3
     
     side = Sides.left
     direction = Directions.right
