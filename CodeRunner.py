@@ -2,34 +2,43 @@ import enum
 import FormatChecker
 import FileReader
 
+#Position For Cursor
 class Position:
     def __init__(self):
         self.xCord = -1
         self.yCord = -1
 
+# Class To Keep Track of For Loops
 class ForLoop:
+
+    # xCord -> int to keep track of x Coordinate for loop symbol ":"
+    # yCord -> int to keep track of y Coordinate for loop symbol ":"
+    # iteration -> int to keep track of iterations in for loop
     def __init__(self,xCord,yCord,iteration):
         self.xCord = xCord
         self.yCord = yCord
         self.iteration = iteration
 
+#Keeps Track of Code Matrix and Characters On It
 class Runner:
+
+    #inMat -> 2D list list of input text file
+    #size -> size of each square of the cube
     def __init__(self,inMat, size):
         self.inMat = inMat
-        self.modMat = []
+        self.modMat = [] #Modified Matrix for all future operations/code
         self.size = size
 
-        self.aStack = []
-        self.opStack = []
-        self.chars = []
+        self.aStack = [] #Stack containing all numbers/letters
+        self.opStack = [] #Stack containing all operations (+,-,*,/,%)
 
-        self.pos = Position()
-        self.aStackSelect = True
-        self.doOps = True
-        self.forLoops = []
-        # self.side = 
-        # self.direction = Directions
+        self.pos = Position() #Keeps track of the position of the cursor
+        self.aStackSelect = True #When True, aStack is selected. False means opStack is selected
+        self.doOps = True #Determines if the top operation gets applied when border between sides is crossed
 
+        self.forLoops = [] #Keeps track of all forloops
+
+    #Function To Initialize modMat from inMat
     def initModMat(self):
         for z in range(6):
             self.modMat.append([])
@@ -64,11 +73,13 @@ class Runner:
             for col in range(self.size):
                 self.modMat[5][row][col] = self.inMat[row+(self.size+1)*3+1][col+(self.size+1)+1]
     
+    #Function that starts the code runner
     def startRunner(self):
         self.runnerSetup()
-        self.printMod()
+        # self.printMod()
         self.moveLoop()
 
+    #Function that finds finds first character to run
     def runnerSetup(self):
         self.initModMat()
         for row in range(self.size):
@@ -82,7 +93,9 @@ class Runner:
         #         print("did find")
         # print("havent found it")
 
-
+    #Function responsible for doing cursor moves and
+    #interpreting the chars that cursor goes on.
+    #It only finishes once toContinue becomes false
     def moveLoop(self):
         toContinue = True
         while toContinue:
@@ -96,6 +109,8 @@ class Runner:
 
         print("Program has ended")
 
+    #Function Determines the next position given Direction and current position.
+    #Also determines if it is necessary to switch sides
     def nextPos(self):
         if self.direction == self.Directions.down:
             if self.inBounds(self.pos.yCord+1):
@@ -117,14 +132,16 @@ class Runner:
                 self.pos.yCord-=1
             else:
                 self.switchSides()
-    
+
+    #Determines if the new position is in bounds of the 
+    #side that the previous position was on
     def inBounds(self, cord):
         if cord>=self.size or cord < 0:
             return False
         else:
             return True
 
-
+    #Function responsible for switching sides and changing relevant variables
     def switchSides(self):
         if self.side == self.Sides.bottom:
             if self.direction == self.Directions.up:
@@ -240,6 +257,7 @@ class Runner:
 
         self.simpleOps()
 
+    #This function implements simple operations int the program(only +,-,*,/,%)
     def simpleOps(self):
         if(self.doOps):
             opTop = int(self.aStack.pop())
@@ -262,69 +280,91 @@ class Runner:
         
 
 
-
+    # Interprets char at current position and applies relevant operation
     def interpChar(self):
         charAtPos = self.modMat[self.side.value][self.pos.yCord][self.pos.xCord]
         # print("char at position is " + charAtPos)
         # print("char at position is " + str(self.pos.yCord))
         # print("char at position is " + str(self.pos.xCord))
         toCont = True
+
+        #Do nothing if space
         if charAtPos == ' ':
             pass
+        
+        #Make Direction right if ">"
         elif(charAtPos == '>'):
             self.direction = self.Directions.right
-            # print("dir changed to right")
+
+        #Make Direction left if "<"
         elif(charAtPos == '<'):
             self.direction = self.Directions.left
-            # print("dir changed to left")
+
+        #Make direction up if "^"
         elif(charAtPos == '^'):
             self.direction = self.Directions.up
-            # print("dir changed to up")
+
+        #Make direction down if "v"
         elif(charAtPos == 'v'):
             self.direction = self.Directions.down
-            # print("dir changed to down")
+
+        #Clear stacks and end program if ")"
         elif(charAtPos == ')'):
             self.aStack = []
             self.opStack = []
             toCont = False
 
+        #Load all Letters(not v) onto aStack
         elif(ord(charAtPos)>64 and ord(charAtPos)<123 and charAtPos != 'v'):
             self.aStack.append(charAtPos)
         
+        #Load all numbers onto aStack
         elif(ord(charAtPos)>47 and ord(charAtPos)<58):
             self.aStack.append(charAtPos)
         
+        #Load space onto aStack
         elif(charAtPos == '~'):
             self.aStack.append(' ')
 
+        #Load relevant simple operation onto opStack
         elif(charAtPos == '%' or charAtPos == '*' or charAtPos == '/' or charAtPos == '+' or charAtPos == '-'):
             self.opStack.append(charAtPos)
 
+        #Toggle aStackSelect - the variable responsible for which stack was selected
         elif(charAtPos == '!'):
             self.aStackSelect =  not self.aStackSelect
         
+        #Toggle doOps - the variable responsible for if simple operation completed when cross sides
         elif(charAtPos == '"'):
             self.doOps =  not self.doOps
 
+        #Convert number to corresponding ascii value
         elif(charAtPos == '='):
             self.aStack[len(self.aStack)-1] = chr(int(self.aStack[len(self.aStack)-1]))
 
+        #Duplicate top value of certain stack depending on aStackSelect
         elif(charAtPos == '#'):
             if(self.aStackSelect):
                 self.aStack.append(self.aStack[len(self.aStack)-1])
             else:
                 self.opStack.append(self.aStack[len(self.opStack)-1])
+        
+        #Pop top value of certain stack depending on aStackSelect
         elif(charAtPos == '&'):
             if(self.aStackSelect):
                 self.aStack.pop()
             else:
                 self.opStack.pop()
+
+        #Duplicate the nth value from a certain stack where n comes from the top value of aStack
         elif(charAtPos == '$'):
             eleNum = int(self.aStack.pop())
             if(self.aStackSelect):
                 self.aStack.append(self.aStack[len(self.aStack) - eleNum])
             else:
                 self.opStack.append(self.opStack[len(self.opStack) - eleNum])
+
+        #Swap the nth and mth value in a certain set where an n and m coming from the top two values of aStack
         elif(charAtPos == '@'):
             eleNum1 = int(self.aStack.pop())
             eleNum2 = int(self.aStack.pop())
@@ -349,7 +389,10 @@ class Runner:
                 self.opStack[len(self.aStack) - eleNum1] = opSwap1 
                 self.opStack[(len(self.aStack) - eleNum2)] = opSwap2
 
-        
+        #If statement using top two elements on aStack
+        # - equal -> Continue going in current direction
+        # - Top element less than Bottom -> turn right
+        # - Top element greater than Bottom -> turn left
         elif(charAtPos == '?'):
             ifTop = int(self.aStack.pop())
             ifBottom = int(self.aStack.pop())
@@ -361,6 +404,8 @@ class Runner:
             elif(ifTop-ifBottom == 0):
                 pass
         
+        # Creates for loop if it doesnt exist, otherwise does another iteration through it
+        # - Supports Nested for loops through a stack
         elif(charAtPos == ':'):
             existingForLoops = [f for f in self.forLoops if f.xCord == self.pos.xCord and f.yCord == self.pos.yCord]
             if len(existingForLoops)==1:
@@ -375,45 +420,43 @@ class Runner:
                 self.forLoops.append(ForLoop(self.pos.xCord,self.pos.yCord,int(self.aStack.pop())))
                 self.direction = self.Directions((self.direction.value - 1)%4)
                 self.forLoops[len(self.forLoops)-1].iteration -=1
-        
+
+        #Input taken in and parsed character by character
         elif(charAtPos == ','):
             cubInput = input("Input Needed")
             for c in cubInput:
                 self.aStack.append(c)
         
+        #Everything Up until the nth element of the stack is popped from top of stack to bottom
         elif(charAtPos == ';'):
             numToPop = int(self.aStack.pop())
             for i in range(numToPop):
                 print(self.aStack.pop(), end = "")
             print("")
         
+        #Clears aStack and opStack
         elif(charAtPos == '`'):
             self.aStack = []
             self.opStack = []
 
+        #Prints Hello World
         elif(charAtPos== '|'):
             print("Hello World")
         
-            
-
-
-
-
-        
-            
-
-
-                
 
         return toCont
     
+    #Prints the Modified Matrix
     def printMod(self):
         print(self.modMat)
         print("\n")
     
+    #Function that is not yet implemented with the purpose of printing
+    #the matrix in a way that would make it more easy to debug
     def fancyPrint(self):
         pass
 
+    #Enums representing different sides of cube
     class Sides(enum.Enum):
         back = 0
         left = 1
@@ -422,6 +465,7 @@ class Runner:
         front = 4
         bottom = 5
     
+    #Enums representing different directions
     class Directions(enum.Enum):
         up = 0
         left = 1
@@ -435,11 +479,11 @@ def main():
     fileName = input("Give the Cube File Name ")
     readFile = FileReader.FileReader(fileName)
     myMatrix = readFile.read()
-    readFile.print()
+    # readFile.print()
 
     inter = FormatChecker.Interp(myMatrix)
     inter.Correct_Format()
-    inter.i_print()
+    # inter.i_print()
 
     runner = Runner(myMatrix,inter.size)
     runner.startRunner()
