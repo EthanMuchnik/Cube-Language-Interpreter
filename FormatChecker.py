@@ -1,17 +1,23 @@
 import FileReader 
 
-#This class rela
+#This class relates to determining if the provided input file
+#is the correct format
 class Interp:
+
+    #matrix -> 2D list representing the raw input from text file
     def __init__(self,matrix):
         self.matrix = matrix
-        self.size = None
-        self.correct =None
+        self.size = None #size of each side of the cube
+        self.correct =None #boolean to show if correct format was used
     
+    #Determines if Correct Format was used
     def Correct_Format(self):
         self.__Cube_Size()
         self.__Outline_Correct()
         print("Checks completed")
 
+    #Determines if the size number provided at top left corner is legitamite
+    #- Quits if not correct
     def __Cube_Size(self):
         if(int(self.matrix[0][0]) >9 or int(self.matrix[0][0]) < 0):
             print("Size number not located in right place")
@@ -19,6 +25,7 @@ class Interp:
         else:
             self.size = int(self.matrix[0][0])
 
+    #Determines if the outline is the correct format
     def __Outline_Correct(self):
         count =0
         for r in range(len(self.matrix)):
@@ -50,6 +57,7 @@ class Interp:
                         
         self.correct = True
 
+    #prints the formatted interpretation of the orginal text file
     def i_print(self):
         if self.correct!=True:
             print("You need to run the Correct_Format function")
