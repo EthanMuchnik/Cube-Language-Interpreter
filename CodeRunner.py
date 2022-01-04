@@ -353,35 +353,45 @@ class Runner:
 
         #Convert number to corresponding ascii value
         elif(charAtPos == '='):
+            self.checkListSize(1,"a")
             self.aStack[len(self.aStack)-1] = chr(int(self.aStack[len(self.aStack)-1]))
 
         #Duplicate top value of certain stack depending on aStackSelect
         elif(charAtPos == '#'):
             if(self.aStackSelect):
+                self.checkListSize(1,"a")
                 self.aStack.append(self.aStack[len(self.aStack)-1])
             else:
+                self.checkListSize(1,"op")
                 self.opStack.append(self.aStack[len(self.opStack)-1])
         
         #Pop top value of certain stack depending on aStackSelect
         elif(charAtPos == '&'):
             if(self.aStackSelect):
+                self.checkListSize(1,"a")
                 self.aStack.pop()
             else:
+                self.checkListSize(1,"op")
                 self.opStack.pop()
 
         #Duplicate the nth value from a certain stack where n comes from the top value of aStack
         elif(charAtPos == '$'):
+            self.checkListSize(1,"a")
             eleNum = int(self.aStack.pop())
             if(self.aStackSelect):
+                self.checkListSize(eleNum,"a")
                 self.aStack.append(self.aStack[len(self.aStack) - eleNum])
             else:
+                self.checkListSize(eleNum,"op")
                 self.opStack.append(self.opStack[len(self.opStack) - eleNum])
 
         #Swap the nth and mth value in a certain set where an n and m coming from the top two values of aStack
         elif(charAtPos == '@'):
+            self.checkListSize(2,"a")
             eleNum1 = int(self.aStack.pop())
             eleNum2 = int(self.aStack.pop())
             if(self.aStackSelect):
+                self.checkListSize(max(eleNum1,eleNum2),"a")
                 aSwap1 = self.aStack[(len(self.aStack) - eleNum1)]
                 aSwap2 = self.aStack[(len(self.aStack) - eleNum2)]
                 aTemp = aSwap1
@@ -392,6 +402,7 @@ class Runner:
                 self.aStack[(len(self.aStack) - eleNum2)] = aSwap2
 
             else:
+                self.checkListSize(max(eleNum1,eleNum2),"op")
                 opSwap1 = self.opStack[len(self.aStack) - eleNum1]
                 opSwap2 = self.opStack[(len(self.aStack) - eleNum2)]
                 opTemp = opSwap1
@@ -407,6 +418,7 @@ class Runner:
         # - Top element less than Bottom -> turn right
         # - Top element greater than Bottom -> turn left
         elif(charAtPos == '?'):
+            self.checkListSize(2,"a")
             ifTop = int(self.aStack.pop())
             ifBottom = int(self.aStack.pop())
             
@@ -422,14 +434,13 @@ class Runner:
         elif(charAtPos == ':'):
             existingForLoops = [f for f in self.forLoops if f.xCord == self.pos.xCord and f.yCord == self.pos.yCord]
             if len(existingForLoops)==1:
-                print("for loop already exists")
                 if(existingForLoops[0].iteration >0):
                     self.direction = self.Directions((self.direction.value - 1)%4)
                     existingForLoops[0].iteration -=1
                 else:
                     self.forLoops.pop()
             else:
-                print("made new for loop")
+                self.checkListSize(1,"a")
                 self.forLoops.append(ForLoop(self.pos.xCord,self.pos.yCord,int(self.aStack.pop())))
                 self.direction = self.Directions((self.direction.value - 1)%4)
                 self.forLoops[len(self.forLoops)-1].iteration -=1
@@ -440,9 +451,11 @@ class Runner:
             for c in cubInput:
                 self.aStack.append(c)
         
-        #Everything Up until the nth element of the stack is popped from top of stack to bottom
+        #Everything Up until the nth element of the stack is popped and printed from top of stack to bottom
         elif(charAtPos == ';'):
+            self.checkListSize(1,"a")
             numToPop = int(self.aStack.pop())
+            self.checkListSize(numToPop,"a")
             for i in range(numToPop):
                 print(self.aStack.pop(), end = "")
             print("")
