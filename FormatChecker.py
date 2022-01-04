@@ -14,7 +14,6 @@ class Interp:
     def Correct_Format(self):
         self.__Cube_Size()
         self.__Outline_Correct()
-        print("Checks completed")
 
     #Determines if the size number provided at top left corner is legitamite
     #- Quits if not correct
@@ -27,31 +26,26 @@ class Interp:
 
     #Determines if the outline is the correct format
     def __Outline_Correct(self):
-        count =0
         for r in range(len(self.matrix)):
             if r == 0 or r == self.size*3+3 or r == self.size*4+4:
                 for c in range(self.size+1,self.size*2+3):
-                    count+=1
                     if self.matrix[r][c]!='.' :
                         print(f"Your formatting is not correct on row {r} and column {c}")
                         quit()
 
             elif r == self.size*1+1 or r == self.size*2+2:
                 for c in range(self.size*3+4):
-                    count+=1
                     if self.matrix[r][c]!='.':
                         print(f"Your formatting is not correct on row {r} and column {c}")
                         quit()
 
             elif r>(self.size+1) and r <=(self.size*2 +1):
-                count+=4
-                if self.matrix[r][0]!= '.' and self.matrix[r][self.size+1]!= '.' and self.matrix[r][self.size*2+1]!='.' and self.matrix[r][self.size*3+2]!='.':
+                if self.matrix[r][0]!= '.' or self.matrix[r][self.size+1]!= '.' or self.matrix[r][self.size*2+2]!='.' or self.matrix[r][self.size*3+3]!='.':
                     print(f"Your formatting is not correct on row {r} and column {c}")
                     quit()
 
             elif r<=(self.size + (self.size+1)*4):
-                count+=2
-                if self.matrix[r][self.size+1]!= '.' and self.matrix[r][self.size*2+1]!='.':
+                if self.matrix[r][self.size+1]!= '.' or self.matrix[r][self.size*2+2]!='.':
                     print(f"Your formatting is not correct on row {r} and column {c}")
                     quit()
                         

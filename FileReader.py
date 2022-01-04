@@ -10,6 +10,8 @@ class FileReader:
 
     #Checks if file exists and then reads input into 2D list - fileInput
     def read(self):
+        self.corrExt()
+
         try:
             f = open(self.filename, "r")
 
@@ -24,6 +26,14 @@ class FileReader:
             
         f.close()
         return self.fileInput
+    
+    #Checks for correct Extension
+    def corrExt(self):
+        if(self.filename.endswith("cube") or self.filename.endswith("dewy")):
+            pass
+        else:
+            print("Incorrect File Extension")
+            quit()
         
     #Prints fileInput
     def print(self):

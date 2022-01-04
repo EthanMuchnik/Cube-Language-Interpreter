@@ -34,7 +34,7 @@ class Runner:
 
         self.pos = Position() #Keeps track of the position of the cursor
         self.aStackSelect = True #When True, aStack is selected. False means opStack is selected
-        self.doOps = True #Determines if the top operation gets applied when border between sides is crossed
+        self.doOps = False #Determines if the top operation gets applied when border between sides is crossed
 
         self.forLoops = [] #Keeps track of all forloops
 
@@ -64,7 +64,6 @@ class Runner:
             for col in range(self.size):
                 self.modMat[3][row][col] = self.inMat[row+(self.size+1)+1][col+(self.size+1)*2+1]
     
-
         for row in range(self.size):
             for col in range(self.size):
                 self.modMat[4][row][col] = self.inMat[row+(self.size+1)*2+1][col+(self.size+1)+1]
@@ -98,8 +97,6 @@ class Runner:
         while toContinue:
             self.nextPos()
             toContinue = self.interpChar()
-            print(f"aStack Print: {self.aStack}")
-            print(f"opStack Print: {self.opStack}")
 
         print("Program has ended")
 
@@ -276,21 +273,24 @@ class Runner:
     #This function implements simple operations int the program(only +,-,*,/,%)
     def simpleOps(self):
         if(self.doOps):
+            self.checkListSize(1,"op")
+            op = self.opStack.pop()
+            
+            self.checkListSize(2,"a")
             opTop = int(self.aStack.pop())
             opBottom = int(self.aStack.pop())
             
-            if(self.opStack):
-                op = self.opStack.pop()
-                if(op== '*'):
-                    self.aStack.append(opTop*opBottom)
-                elif(op== '/'):
-                    self.aStack.append(opTop/opBottom)
-                elif(op== '+'):
-                    self.aStack.append(opTop+opBottom)
-                elif(op== '-'):
-                    self.aStack.append(opTop-opBottom)
-                elif(op== '%'):
-                    self.aStack.append(opTop%opBottom)
+            
+            if(op== '*'):
+                self.aStack.append(opTop*opBottom)
+            elif(op== '/'):
+                self.aStack.append(opTop/opBottom)
+            elif(op== '+'):
+                self.aStack.append(opTop+opBottom)
+            elif(op== '-'):
+                self.aStack.append(opTop-opBottom)
+            elif(op== '%'):
+                self.aStack.append(opTop%opBottom)
         else:
             pass
         
@@ -458,6 +458,32 @@ class Runner:
         
 
         return toCont
+
+    #Checks if List Length is Sufficient For Operation
+    # - num->ammount of list elmennts needed
+    # - stack->stack this operation pertains to
+    def checkListSize(self,num,stack):
+        if stack == "a":
+            if len(self.aStack) < num:
+                print(f"\nChar Stack Length is Insufficient ")
+                print(f"Pos: (Side = {self.side.name}, xCord = {self.pos.xCord}, yCord = {self.pos.yCord})")
+                print(f"current Char Stack: {self.aStack}")
+                print(f"current Operation pStack: {self.opStack}")
+                quit()
+            else:
+                pass
+
+        elif stack == "op":
+            if len(self.opStack) < num:
+                print(f"\nOperation Stack Length is Insufficient ")
+                print(f"Pos: (Side = {self.side.name}, xCord = {self.pos.xCord}, yCord = {self.pos.yCord})")
+                print(f"current Char Stack: {self.aStack}")
+                print(f"current Operation Stack: {self.opStack}")
+                quit()
+            else:
+                pass
+
+    
     
     #Prints the Modified Matrix
     def printMod(self):
