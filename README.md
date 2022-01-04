@@ -20,7 +20,7 @@ The following text file represents a simple eample of Cube code:
    ....   
 ```
 
-##Features
+## Features
 
 - 2D representation of 3D coding interface.
 - Code intuitively represents an unfolded cube
@@ -30,7 +30,7 @@ The following text file represents a simple eample of Cube code:
 - One of the few languages that can be run from more than one extension(.cube and .dewy)
 - Exclusively Coded in Python Meaning Source Code is Relatively Easy To Understand
 
-##Building
+## Building
 
 Requirements:
 - python version (>=3.0)
@@ -39,9 +39,18 @@ Supported Systems:
 - Windows 10/11
 - GNU/Linux(Tested on Ubuntu 20.04)
 
-Build Cube - Example
+Install Cube and Run Cube File
 
 ```
+$ git clone https://github.com/EthanMuchnik/Cube-Language-Interpreter.git
+$ cd Cube-Language-Interpreter
+$ python CodeRunner.py
+```
+Then enter your .cube or .dewy file name when prompted
+
+## Documentation:
+
+Coming Soon!
 
 
 
