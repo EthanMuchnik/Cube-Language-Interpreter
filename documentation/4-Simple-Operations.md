@@ -4,7 +4,7 @@ So now that we know how to load letters, numbers, and simple operations onto the
 
 I will explain the steps involved in the following sections. The stacks will be represented in the fashion below where "2" is the top element of the "LetNum Stack" and "-" is the top element in the "Operation Stack". Think of "popped characters" object as another FILO stack though it simply exists for the easy visualization of the arithmatic operation that is about to happen
 
-LetNum Stack: 3, 2
+LetNum Stack: 3, 2  
 Operation Stack: +, -
 
 Popped Characters:
@@ -12,23 +12,25 @@ Popped Characters:
 ## Steps Involved
 So lets use the example above and imagine that we just crossed a side. How do we modify the stacks? This is the original orientation of the stack
 
-LetNum Stack: 3, 2
+LetNum Stack: 3, 2  
 Operation Stack: +, -
+
+Popped Characters:
 
 ### Popping Neccesary Variables
 
 The first step is to pop two characters from the "LetNum Stack" and one character from the "Operation Stack" as per all simple operations. With the top character from the "LetNum Stack" getting popped first followed by the top character from "Operation Stack" and lastly with the new top chracter of "LetNum Stack" getting popped.
 
-LetNum Stack:
+LetNum Stack:  
 Operation Stack: +
 
 Popped Characters: 2, -, 3
 
-### Completing the operations
+### Completing the Operations
 
 The next step is propably the most straightforward one. All that happens is that "2 - 3" is completed with the answer beign -1 in this scenario.
 
-LetNum Stack:
+LetNum Stack:  
 Operation Stack: +
 
 Popped Characters: -1
@@ -37,7 +39,7 @@ Popped Characters: -1
 
 The last step is to simply push the remaining value to the "LetNum Stack" and delete the Popped Characters stack. And with that the operation is fully complete
 
-LetNum Stack: -1
+LetNum Stack: -1  
 Operation Stack: +
 
 ## " Key Character
@@ -58,8 +60,8 @@ In addition, if the "LetNum Stack" contains letters instead of numbers, another 
 
 With Each Example will come the state of both stacks at each turn using the following format. The "top" of the stack is the rightmost character as shown below.
 
-Turn: 0
-LetNum Stack: 2, 1
+Turn: 0  
+LetNum Stack: 2, 1  
 Operation Stack: +, -
 
 In this example "b" would be at the top of the LetNum Stack and "-" would be at the top of the operation stack.
@@ -82,35 +84,35 @@ In this example "b" would be at the top of the LetNum Stack and "-" would be at 
    ....
 ```
 
-Turn: 0
-LetNum Stack:
+Turn: 0  
+LetNum Stack:  
 Operation Stack:
 
-Turn: 1
-LetNum Stack: 1
+Turn: 1  
+LetNum Stack: 1  
 Operation Stack:
 
-Turn: 2
-LetNum Stack: 1, 2
+Turn: 2  
+LetNum Stack: 1, 2  
 Operation Stack:
 
-Turn: 3
-LetNum Stack: 1, 2
+Turn: 3  
+LetNum Stack: 1, 2  
 Operation Stack: +
 
-Turn: 4
-LetNum Stack: 1, 2
+Turn: 4  
+LetNum Stack: 1, 2  
 Operation Stack: +
 
-Turn: 5
-LetNum Stack: 1, 2
+Turn: 5  
+LetNum Stack: 1, 2  
 Operation Stack: +
 
-Turn: 6
-LetNum Stack: 3
+Turn: 6  
+LetNum Stack: 3  
 Operation Stack:
 
-Turn: 7
-LetNum Stack:
+Turn: 7  
+LetNum Stack:  
 Operation Stack:
 
