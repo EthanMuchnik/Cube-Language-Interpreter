@@ -10,7 +10,9 @@ However, it is a different story for characters like letters, numbers, and simpl
 
 ### LetNum Stack
 
-Lets first go over the first stack which we will dub the "LetNum Stack". As the name suggests, it takes in any numbers or letters. Since the cursor can only point to one character at a time, words that are more than one letter or numbers greater than 9 can not be directly inputted into the stack. It is important to note that "v" is not able to be inputed as the interpretaor only interprets "v" as the "Going Down" character.
+Lets first go over the first stack which we will dub the "LetNum Stack". As the name suggests, it takes in any numbers or letters. Since the cursor can only point to one character at a time, words that are more than one letter or numbers greater than 9 can not be directly inputted into the stack. It is important to note that "v" is not able to be inputed as the interpretor only interprets "v" as the "Going Down" character.
+
+It is also important to note that a space can be added by writing "~".
 
 ### Operation Stack
 

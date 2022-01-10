@@ -299,13 +299,19 @@ class Runner:
             if(op== '*'):
                 self.aStack.append(str(opTop*opBottom))
             elif(op== '/'):
-                self.aStack.append(str(opTop/opBottom))
+                if opBottom == 0:
+                    print("Can't Divide by 0")
+                else:
+                    self.aStack.append(str(opTop/opBottom))
             elif(op== '+'):
                 self.aStack.append(str(opTop+opBottom))
             elif(op== '-'):
                 self.aStack.append(str(opTop-opBottom))
             elif(op== '%'):
-                self.aStack.append(str(opTop%opBottom))
+                if opBottom == 0:
+                    print("Can't Modula by 0")
+                else:
+                    self.aStack.append(str(opTop%opBottom))
         else:
             pass
 
@@ -501,7 +507,7 @@ class Runner:
                 print(f"\nChar Stack Length is Insufficient ")
                 print(f"Pos: (Side = {self.side.name}, xCord = {self.pos.xCord}, yCord = {self.pos.yCord})")
                 print(f"current Char Stack: {self.aStack}")
-                print(f"current Operation pStack: {self.opStack}")
+                print(f"current Operation Stack: {self.opStack}")
                 quit()
             else:
                 pass
@@ -518,18 +524,20 @@ class Runner:
     
     #Checks if a character is a letter
     def checkLetter(self, theChar):
-        if ord(theChar)>64 and ord(theChar)<123 and theChar != 'v':
-            pass
-        else:
-            print(f"'{theChar}' is a number when you needed a letter")
-            quit();
+        for char in range(len(theChar)):
+            if ord(theChar[char])>64 and ord(theChar[char])<123 and theChar[char] != 'v':
+                pass
+            else:
+                print(f"'{theChar[char]}' is a number when you needed a letter")
+                quit();
 
     def checkNumber(self, theChar):
-        if ord(theChar)>47 and ord(theChar)<58:
-            pass
-        else:
-            print(f"'{theChar}' is a letter when you needed a number")
-            quit();
+        for char in range(len(theChar)):
+            if ord(theChar[char])>47 and ord(theChar[char])<58:
+                pass
+            else:
+                print(f"'{theChar[char]}' is a letter when you needed a number")
+                quit();
 
     
     #Prints the Modified Matrix
