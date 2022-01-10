@@ -2,7 +2,7 @@
 Cube is an esoteric programming language made to emulate a 3D cube via a 2D text editor interface. The only files taht can run Cube code end with extensions ".cube" and ".dewy".
 
 ## Example
-The following text file represents a simple eample of Cube code:
+The following text file represents a simple example of Cube code:
 
 ```
 2  ....
@@ -43,8 +43,8 @@ Install Cube and Run Cube File
 
 ```
 $ git clone https://github.com/EthanMuchnik/Cube-Language-Interpreter.git
-$ cd Cube-Language-Interpreter
-$ python CodeRunner.py
+$ cd Cube-Language-Interpreter/src
+$ python3 CodeRunner.py
 ```
 Then enter your .cube or .dewy file name when prompted
 
