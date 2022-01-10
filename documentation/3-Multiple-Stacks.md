@@ -12,7 +12,7 @@ However, it is a different story for characters like letters, numbers, and simpl
 
 Lets first go over the first stack which we will dub the "LetNum Stack". As the name suggests, it takes in any numbers or letters. Since the cursor can only point to one character at a time, words that are more than one letter or numbers greater than 9 can not be directly inputted into the stack. It is important to note that "v" is not able to be inputed as the interpretaor only interprets "v" as the "Going Down" character.
 
-### Operation Stacks
+### Operation Stack
 
 The second stuck is the operation stack which only picks up "+", "-", "*","/", "%". It is important to note that what determines which stack will pick up either chracter is determined by what the character actually is. The LetNum Stack should never pick up "*" and the Operation Stack should never pick up "%". 
 
@@ -50,24 +50,24 @@ In this example "b" would be at the top of the LetNum Stack and "-" would be at 
    ....
 ```
 
-Turn 0:
-LetNum Stack:
+Turn 0:  
+LetNum Stack:  
 Operation Stack:
 
-Turn 1:
-LetNum Stack: a
+Turn 1:  
+LetNum Stack: a  
 Operation Stack:
 
-Turn 2:
-LetNum Stack: a
+Turn 2:  
+LetNum Stack: a  
 Operation Stack:
 
-Turn 3:
-LetNum Stack: a
+Turn 3:  
+LetNum Stack: a  
 Operation Stack: +
 
-Turn 4:
-LetNum Stack: 
+Turn 4:  
+LetNum Stack:   
 Operation Stack:
 
 ### Example 2
@@ -88,39 +88,39 @@ Operation Stack:
    ....
 ```
 
-Turn 0:
-LetNum Stack:
+Turn 0:  
+LetNum Stack:  
 Operation Stack:
 
-Turn 1:
-LetNum Stack: u
+Turn 1:  
+LetNum Stack: u  
 Operation Stack:
 
-Turn 2:
-LetNum Stack: u, p
+Turn 2:  
+LetNum Stack: u, p  
 Operation Stack:
 
-Turn 3:
-LetNum Stack: u, p
+Turn 3:  
+LetNum Stack: u, p  
 Operation Stack:
 
-Turn 4:
-LetNum Stack: u, p, 3
+Turn 4:  
+LetNum Stack: u, p, 3  
 Operation Stack:
 
-Turn 5:
-LetNum Stack: u, p, 3
+Turn 5:  
+LetNum Stack: u, p, 3  
 Operation Stack: -
 
-Turn 6:
-LetNum Stack: u, p, 3
+Turn 6:  
+LetNum Stack: u, p, 3  
 Operation Stack: -
 
-Turn 7:
-LetNum Stack: u, p, 3
+Turn 7:  
+LetNum Stack: u, p, 3  
 Operation Stack: -, *
 
-Turn 8:
-LetNum Stack:
-Operation Stack:
+Turn 8:  
+LetNum Stack:  
+Operation Stack:  
 
