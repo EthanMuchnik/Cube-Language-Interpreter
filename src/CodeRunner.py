@@ -74,19 +74,32 @@ class Runner:
     
     #Function that starts the code runner
     def startRunner(self):
-        self.runnerSetup()
+        self.runnerSetupSide()
+        self.runnerSetupDirection()
         self.moveLoop()
 
-    #Function that finds finds first character to run
-    def runnerSetup(self):
+    #Function that finds finds location of ( and corresponding cords and side
+    def runnerSetupSide(self):
         self.initModMat()
 
-        for row in range(self.size):
-            for col in range(self.size):
-                if self.modMat[self.side.value][row][col] == '(':
-                    self.pos.xCord = col
-                    self.pos.yCord = row
-                    return
+        for side in range(6):
+            for row in range(self.size):
+                for col in range(self.size):
+                    if self.modMat[side][row][col] == '(':
+                        self.side = self.Sides(side)
+                        self.pos.xCord = col
+                        self.pos.yCord = row
+                        return
+
+    #Function that finds initial directions
+
+    def runnerSetupDirection(self):
+        if self.side == self.Sides.back:
+            self.direction = self.Directions.left
+        else:
+            self.direction = self.Directions.right
+        
+
 
     #Function responsible for doing cursor moves and
     #interpreting the chars that cursor goes on.
@@ -277,24 +290,24 @@ class Runner:
             op = self.opStack.pop()
             
             self.checkListSize(2,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -2])
+            self.checkNumber(self.aStack[len(self.aStack) -1])
             opTop = int(self.aStack.pop())
             opBottom = int(self.aStack.pop())
             
             
             if(op== '*'):
-                self.aStack.append(opTop*opBottom)
+                self.aStack.append(str(opTop*opBottom))
             elif(op== '/'):
-                self.aStack.append(opTop/opBottom)
+                self.aStack.append(str(opTop/opBottom))
             elif(op== '+'):
-                self.aStack.append(opTop+opBottom)
+                self.aStack.append(str(opTop+opBottom))
             elif(op== '-'):
-                self.aStack.append(opTop-opBottom)
+                self.aStack.append(str(opTop-opBottom))
             elif(op== '%'):
-                self.aStack.append(opTop%opBottom)
+                self.aStack.append(str(opTop%opBottom))
         else:
             pass
-        
-
 
     # Interprets char at current position and applies relevant operation
     def interpChar(self):
@@ -354,6 +367,7 @@ class Runner:
         #Convert number to corresponding ascii value
         elif(charAtPos == '='):
             self.checkListSize(1,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -1])
             self.aStack[len(self.aStack)-1] = chr(int(self.aStack[len(self.aStack)-1]))
 
         #Duplicate top value of certain stack depending on aStackSelect
@@ -377,6 +391,7 @@ class Runner:
         #Duplicate the nth value from a certain stack where n comes from the top value of aStack
         elif(charAtPos == '$'):
             self.checkListSize(1,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -1])
             eleNum = int(self.aStack.pop())
             if(self.aStackSelect):
                 self.checkListSize(eleNum,"a")
@@ -388,6 +403,8 @@ class Runner:
         #Swap the nth and mth value in a certain set where an n and m coming from the top two values of aStack
         elif(charAtPos == '@'):
             self.checkListSize(2,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -2])
+            self.checkNumber(self.aStack[len(self.aStack) -1])
             eleNum1 = int(self.aStack.pop())
             eleNum2 = int(self.aStack.pop())
             if(self.aStackSelect):
@@ -419,6 +436,8 @@ class Runner:
         # - Top element greater than Bottom -> turn left
         elif(charAtPos == '?'):
             self.checkListSize(2,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -2])
+            self.checkNumber(self.aStack[len(self.aStack) -1])
             ifTop = int(self.aStack.pop())
             ifBottom = int(self.aStack.pop())
             
@@ -454,6 +473,7 @@ class Runner:
         #Everything Up until the nth element of the stack is popped and printed from top of stack to bottom
         elif(charAtPos == ';'):
             self.checkListSize(1,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -1])
             numToPop = int(self.aStack.pop())
             self.checkListSize(numToPop,"a")
             for i in range(numToPop):
@@ -495,8 +515,22 @@ class Runner:
                 quit()
             else:
                 pass
-
     
+    #Checks if a character is a letter
+    def checkLetter(self, theChar):
+        if ord(theChar)>64 and ord(theChar)<123 and theChar != 'v':
+            pass
+        else:
+            print(f"'{theChar}' is a number when you needed a letter")
+            quit();
+
+    def checkNumber(self, theChar):
+        if ord(theChar)>47 and ord(theChar)<58:
+            pass
+        else:
+            print(f"'{theChar}' is a letter when you needed a number")
+            quit();
+
     
     #Prints the Modified Matrix
     def printMod(self):
