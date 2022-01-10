@@ -52,5 +52,10 @@ Then enter your .cube or .dewy file name when prompted
 
 Coming Soon!
 
+## Credits
 
+Ethan Muchnik - Implemented All Interpreter Code and wrote Original Language Specification
 
+Cynthia Wang - Wrote Original Language Specification
+
+Almutwakel Hassan - Wrote Original Language Specification
