@@ -54,7 +54,7 @@ Coming Soon!
 
 ## Credits
 
-Ethan Muchnik - Implemented All Interpreter Code and wrote Original Language Specification
+Ethan Muchnik - Implemented All Interpreter Code and Wrote Original Language Specification
 
 Cynthia Wang - Wrote Original Language Specification
 
