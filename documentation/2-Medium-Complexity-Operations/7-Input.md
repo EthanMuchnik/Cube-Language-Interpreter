@@ -19,7 +19,7 @@ Program Output:
 
 In this example "b" would be at the top of the LetNum Stack and "-" would be at the top of the operation stack.
 
-Also note that when there will be a sample inpute it will be in parenthesis for the immediate turn and not after
+Also note that when there will be a sample inpute it will be in parenthesis for the immediate turn and not after.
 
 ### Example 1
 

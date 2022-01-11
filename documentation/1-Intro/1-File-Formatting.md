@@ -1,6 +1,6 @@
 # General Overview
 
-Below I will explain the purpose of Cube and the General Features at Hand. Throughout this document I will explain what each of the individual characters mean in the context of this language
+Below I will explain the purpose of Cube and the general features at hand. Throughout this document and the ones that follow I will make sure to explain what each of the individual characters mean in the context of this language.
 
 ## What is Cube?
 
@@ -38,7 +38,7 @@ Cube is an Esoteric Programming Language that simulates a 3D coding experience v
        ........
 ```
 
-Every Single cube File contains 6 squares that are a certain size by a certain size arranged in this way with periods seperating them. The size of these squares is dependent on the number in the very top left of the proram that most be between 1 and 9 inclusive. The words in each of the boxes are not actually present in cube code and are simply comments to illustrate which side is which.
+Every single cube file contains 6 squares that are a certain size arranged in this way with periods seperating them. The size of these squares is dependent on the number in the very top left of the proram that must be between 1 and 9 inclusive. The words in each of the boxes are not actually present in cube code and are simply comments to illustrate which side is which.
 
 ### The Cursor
 
