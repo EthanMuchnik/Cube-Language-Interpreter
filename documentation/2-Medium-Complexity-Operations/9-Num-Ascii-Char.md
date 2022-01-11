@@ -2,6 +2,8 @@
 
 This Operator solves a seemingly somewhat major design issue within Cube which is the lack of a "v" character. Although it has been stated earlier that "v" is really nothing more than a rip off "u" there has been functionality added for those insist on including "v". We will discuss the operator in the sections below.
 
+This operator can also be used for any other letter and even symbols like "+"
+
 ## Conversion Character
 
 "=" -> An equal sign is all that is needed to conver a number to an ascii value

@@ -383,16 +383,19 @@ class Runner:
                 self.aStack.append(self.aStack[len(self.aStack)-1])
             else:
                 self.checkListSize(1,"op")
-                self.opStack.append(self.aStack[len(self.opStack)-1])
+                self.opStack.append(self.opStack[len(self.opStack)-1])
         
-        #Pop top value of certain stack depending on aStackSelect
+        #Pop the nth value of certain stack depending on aStackSelect where n is the top value of aStack
         elif(charAtPos == '&'):
+            self.checkListSize(1,"a")
+            self.checkNumber(self.aStack[len(self.aStack) -1])
+            eleNum = int(self.aStack.pop())
             if(self.aStackSelect):
                 self.checkListSize(1,"a")
-                self.aStack.pop()
+                self.aStack.pop(len(self.aStack) - eleNum)
             else:
                 self.checkListSize(1,"op")
-                self.opStack.pop()
+                self.opStack.pop(len(self.opStack) - eleNum)
 
         #Duplicate the nth value from a certain stack where n comes from the top value of aStack
         elif(charAtPos == '$'):
@@ -426,15 +429,15 @@ class Runner:
 
             else:
                 self.checkListSize(max(eleNum1,eleNum2),"op")
-                opSwap1 = self.opStack[len(self.aStack) - eleNum1]
-                opSwap2 = self.opStack[(len(self.aStack) - eleNum2)]
+                opSwap1 = self.opStack[len(self.opStack) - eleNum1]
+                opSwap2 = self.opStack[(len(self.opStack) - eleNum2)]
                 opTemp = opSwap1
 
                 opSwap1 = opSwap2
                 opSwap2 = opTemp
 
-                self.opStack[len(self.aStack) - eleNum1] = opSwap1 
-                self.opStack[(len(self.aStack) - eleNum2)] = opSwap2
+                self.opStack[len(self.opStack) - eleNum1] = opSwap1 
+                self.opStack[(len(self.opStack) - eleNum2)] = opSwap2
 
         #If statement using top two elements on aStack
         # - equal -> Continue going in current direction
