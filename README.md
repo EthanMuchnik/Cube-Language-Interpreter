@@ -50,7 +50,7 @@ Then enter your .cube or .dewy file name when prompted
 
 ## Documentation:
 
-Coming Soon!
+Check out the documentation folder going through each of the files in order.
 
 ## Credits
 
