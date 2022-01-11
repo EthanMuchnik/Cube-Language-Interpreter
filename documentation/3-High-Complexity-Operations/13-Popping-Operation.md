@@ -34,3 +34,48 @@ In this example "b" would be at the top of the LetNum Stack and "-" would be at 
    . &.
    ....
 ```
+
+Turn: 0  
+LetNum Stack:   
+Operation Stack:  
+Program Output:  
+
+Turn: 1  
+LetNum Stack: 2  
+Operation Stack:  
+Program Output: 
+
+Turn: 2  
+LetNum Stack: 2, 1  
+Operation Stack:  
+Program Output: 
+
+Turn: 3  
+LetNum Stack: 2, 1  
+Operation Stack:  
+Program Output: 
+
+Turn: 4  
+LetNum Stack: 2, 1, 1  
+Operation Stack:  
+Program Output: 
+
+Turn: 5  
+LetNum Stack: 2, 1, 1, 2  
+Operation Stack:  
+Program Output: 
+
+Turn: 6  
+LetNum Stack: 2, 1  
+Operation Stack:  
+Program Output: 
+
+Turn: 7  
+LetNum Stack:   
+Operation Stack:  
+Program Output: 2
+
+Turn: 8  
+LetNum Stack:   
+Operation Stack:  
+Program Output: 2
