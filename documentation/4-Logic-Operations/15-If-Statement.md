@@ -1,6 +1,6 @@
 # If Statement
 
-Although an If statement is also an operation, due to its logical nature to it and its prevelence in other programming languages in some form, it was put into a seperate folder from the other operations. Of course this language is also very different from many others so the way an if statement gets executed is completely different from previous languages and its numerous quirks will be discussed in the sections below.
+Although an If statement is also an operation, due to its logical nature to it and its prevalence in other programming languages in some form, it was put into a separate folder from the other operations. Of course, this language is also very different from many others so the way an if statement gets executed is completely different from previous languages and its numerous quirks will be discussed in the sections below.
 
 ## If Statement Character
 

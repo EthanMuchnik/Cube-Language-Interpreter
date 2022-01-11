@@ -1,12 +1,12 @@
 # Input
 
-Now that you know how to output data. How do you take in data that was not orginally in the cube. Cube has the input operation for that which will be covered in the following sections below.
+Now that you know how to output data. How do you take in data that was not originally in the cube. Cube has the input operation for that which will be covered in the following sections below.
 
 ## Input Chracter
 
 "," -> Input Operation
 
-When the cursor goes over the input operation, it will prompt the user to enter input in the terminal. After the input is enterred, the code after the character is run. The input goes into the "LetNum Stack" with the last character of input being at the top of the stack
+When the cursor goes over the input operation, it will prompt the user to enter input in the terminal. After the input is entered, the code after the character is run. The input goes into the "LetNum Stack" with the last character of input being at the top of the stack
 
 ## Examples
 

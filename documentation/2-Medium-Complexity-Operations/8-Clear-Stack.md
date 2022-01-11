@@ -6,7 +6,7 @@ This operation is for deleting the contents of both stacks mid-program. The oper
 
 "`" -> Clears both "LetNum" and "Operation Stack"
 
-When the cursor is on this character, both the "LetNum" and "Operation Stack" get cleared immediately
+When the cursor is on this character, both the "LetNum Stack" and "Operation Stack" get cleared immediately.
 
 ## Examples
 

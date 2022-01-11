@@ -1,6 +1,6 @@
 # Printing Hello World
 
-With the understanding of how to input data into the stacks one may wonder, how would you output this data. This page will do its best to not answer this question any meaningful way unless you just care about printing "Hello World". This is so you can flex on all your friends by saying you only had two write three character to output hello world.
+With the understanding of how to input data into the stacks one may wonder, how would you output this data. This page will do its best to not answer this question any meaningful way unless you just care about printing "Hello World". This is so you can flex on all your friends by saying you only had to write three characters to output hello world.
 
 ## Character
 

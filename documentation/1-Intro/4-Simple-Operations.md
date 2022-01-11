@@ -1,8 +1,8 @@
 # Simple Operations
 
-So now that we know how to load letters, numbers, and simple operations onto the stacks, how does this actually translate to simple operations? In order to understand how simple operations first we must go into another major feature of "Cube" which is that operations are only completed when the cursor crosses a side. There is also another operation the condition being done which will be discussed in the (" Key Word) section below.
+So now that we know how to load letters, numbers, and simple operations onto the stacks, how does this actually translate to implementing the simple operations? In order to understand how simple operations work, first we must go into another major feature of Cube which is that operations are only completed when the cursor crosses a side. There is also another condition to the operation being done which will be discussed in the (" Key Word) section below.
 
-I will explain the steps involved in the following sections. The stacks will be represented in the fashion below where "2" is the top element of the "LetNum Stack" and "-" is the top element in the "Operation Stack". Think of the "popped characters" object as another FILO stack though it simply exists for the easy visualization of the arithmetic operation that is about to happen.
+I will explain the steps involved in the following sections. The stacks will be represented in the fashion below where "2" is the top element of the "LetNum Stack" and "-" is the top element in the "Operation Stack". Think of the "Popped Characters" object as another FILO stack though it simply exists for the easy visualization of the arithmetic operation that is about to happen.
 
 LetNum Stack: 3, 2  
 Operation Stack: +, -
@@ -19,7 +19,7 @@ Popped Characters:
 
 ### Popping Neccesary Variables
 
-The first step is to pop two characters from the "LetNum Stack" and one character from the "Operation Stack" as per all simple operations. With the top character from the "LetNum Stack" getting popped first followed by the top character from "Operation Stack" and lastly with the new top chracter of "LetNum Stack" getting popped.
+The first step is to pop two characters from the "LetNum Stack" and one character from the "Operation Stack" as per all simple operations. The top character from the "LetNum Stack" gets popped first followed by the top character from "Operation Stack" and lastly the new top chracter of "LetNum Stack" getting popped.
 
 LetNum Stack:  
 Operation Stack: +

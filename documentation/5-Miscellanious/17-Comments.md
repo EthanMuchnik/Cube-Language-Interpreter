@@ -41,6 +41,6 @@ Another feature that makes cube a revolutionary language is that it has an innov
 If you actually read this entire documentation and took the time out of your life to learn this language I have two things to say to you.
 
 1. Thank you very much. You are on your way to becoming one of the first full-stack cube developers.
-2. What in the world are you doing with your life? Do you even value your time? You realize that this language is a meme rightt?
+2. What in the world are you doing with your life? Do you even value your time? You realize that this language is a meme right?
 
 Just kidding about the second point. I really appreciate that you went on this journey with me and please recommend this language to people that you think would want to explore it. Also keep tabs on my GitHub account "EthanMuchnik" for any future projects.
