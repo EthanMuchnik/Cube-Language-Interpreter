@@ -1,5 +1,5 @@
 # Cube
-Cube is an esoteric programming language made to emulate a 3D cube via a 2D text editor interface. The only files taht can run Cube code end with extensions ".cube" and ".dewy".
+Cube is an esoteric programming language made to emulate a 3D cube via a 2D text editor interface. The only files that can run Cube code end with extensions ".cube" and ".dewy".
 
 ## Example
 The following text file represents a simple example of Cube code:
