@@ -59,3 +59,5 @@ Ethan Muchnik - Implemented All Interpreter Code and Wrote Original Language Spe
 Cynthia Wang - Wrote Original Language Specification
 
 Almutwakel Hassan - Wrote Original Language Specification
+
+Specification was developed in the Esoteric Programming Class in CMU.
