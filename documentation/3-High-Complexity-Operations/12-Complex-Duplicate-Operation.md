@@ -23,6 +23,8 @@ In this example "b" would be at the top of the LetNum Stack and "-" would be at 
 
 ### Example 1
 
+
+```
 2  ....
    . 2.
    . 3.
@@ -36,7 +38,7 @@ In this example "b" would be at the top of the LetNum Stack and "-" would be at 
    . ;.
    . $.
    ....
-
+```
 Turn: 0  
 LetNum Stack:  
 Operation Stack:   
