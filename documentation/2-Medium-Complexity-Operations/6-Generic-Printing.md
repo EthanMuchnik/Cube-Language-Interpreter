@@ -42,53 +42,53 @@ In this example "b" would be at the top of the LetNum Stack and "-" would be at 
 ```
 
 Turn: 0  
-LetNum Stack:
-Operation Stack:
+LetNum Stack:  
+Operation Stack:  
 Program Output:
 
 Turn: 1  
-LetNum Stack:
-Operation Stack:
-Program Output:
+LetNum Stack:  
+Operation Stack:  
+Program Output:  
 
 Turn: 2  
-LetNum Stack: b
-Operation Stack:
-Program Output:
+LetNum Stack: b  
+Operation Stack:  
+Program Output:  
 
 Turn: 3  
-LetNum Stack:
-Operation Stack:
-Program Output:
+LetNum Stack:  
+Operation Stack:  
+Program Output:  
 
 Turn: 4  
-LetNum Stack: b, a
-Operation Stack:
-Program Output:
+LetNum Stack: b, a  
+Operation Stack:  
+Program Output:  
 
 Turn: 5  
-LetNum Stack: b, a
-Operation Stack:
-Program Output:
+LetNum Stack: b, a  
+Operation Stack:  
+Program Output:  
 
 Turn: 6  
-LetNum Stack: b, a, 1
-Operation Stack:
-Program Output:
+LetNum Stack: b, a, 1  
+Operation Stack:  
+Program Output:  
 
 Turn: 7  
-LetNum Stack: b, a, 1, 2
-Operation Stack:
-Program Output: a1
+LetNum Stack: b, a, 1, 2  
+Operation Stack:  
+Program Output: a1  
 
 Turn: 8  
-LetNum Stack: b
-Operation Stack:
-Program Output: a1
+LetNum Stack: b  
+Operation Stack:  
+Program Output: a1  
 
 Turn: 9  
-LetNum Stack:
-Operation Stack:
-Program Output: a1
+LetNum Stack:  
+Operation Stack:  
+Program Output: a1  
 
 
