@@ -37,77 +37,77 @@ Example 1:
 ```
 
 Turn: 0  
-LetNum Stack:
-Operation Stack:
-Program Output:
+LetNum Stack:  
+Operation Stack:  
+Program Output:  
 
 Turn: 1  
-LetNum Stack:
-Operation Stack:
-Program Output:
+LetNum Stack:  
+Operation Stack:  
+Program Output:  
 
 Turn: 2  
-LetNum Stack: 9
-Operation Stack:
-Program Output:
+LetNum Stack: 9  
+Operation Stack:  
+Program Output:  
 
 Turn: 3  
-LetNum Stack: 9, 8
-Operation Stack:
-Program Output:
+LetNum Stack: 9, 8  
+Operation Stack:  
+Program Output:  
 
 Turn: 4  
-LetNum Stack: 9, 8
-Operation Stack: *
-Program Output:
+LetNum Stack: 9, 8  
+Operation Stack: *  
+Program Output:  
 
 Turn: 5  
-LetNum Stack: 9, 8
-Operation Stack: *
-Program Output:
+LetNum Stack: 9, 8  
+Operation Stack: *  
+Program Output:  
 
 Turn: 6  
-LetNum Stack: 9, 8
-Operation Stack: *
-Program Output:
+LetNum Stack: 9, 8  
+Operation Stack: *  
+Program Output:  
 
 Turn: 7  
-LetNum Stack: 72
-Operation Stack:
-Program Output:
+LetNum Stack: 72  
+Operation Stack:  
+Program Output:  
 
 Turn: 8  
-LetNum Stack: 72
-Operation Stack:
-Program Output:
+LetNum Stack: 72  
+Operation Stack:  
+Program Output:  
 
 Turn: 9  
-LetNum Stack: 72
-Operation Stack:
-Program Output:
+LetNum Stack: 72  
+Operation Stack:  
+Program Output:  
 
 Turn: 10  
-LetNum Stack: 72
-Operation Stack:
-Program Output:
+LetNum Stack: 72  
+Operation Stack:  
+Program Output:  
 
 Turn: 10  
-LetNum Stack: H
-Operation Stack:
-Program Output:
+LetNum Stack: H  
+Operation Stack:  
+Program Output:  
 
 Turn: 11 
-LetNum Stack: H, 1
-Operation Stack:
-Program Output:
+LetNum Stack: H, 1  
+Operation Stack:  
+Program Output:  
 
 Turn: 12  
-LetNum Stack:
-Operation Stack:
-Program Output: H
+LetNum Stack:  
+Operation Stack:  
+Program Output: H  
 
 Turn: 13  
-LetNum Stack:
-Operation Stack:
-Program Output: H
+LetNum Stack:  
+Operation Stack:  
+Program Output: H  
 
