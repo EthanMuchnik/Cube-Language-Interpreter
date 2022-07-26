@@ -46,6 +46,6 @@ Operation Stack:
 Program Output: Hello World
 
 Turn: 2  
-LetNum Stack: b  
+LetNum Stack:   
 Operation Stack:  
 Program Output:  
