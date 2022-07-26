@@ -20,7 +20,7 @@ Program Output:
 In this example "b" would be at the top of the LetNum Stack and "-" would be at the top of the operation stack.
 
 Example 1:
-
+```
 2  ....
    .v<.
    . ".
@@ -34,6 +34,7 @@ Example 1:
    . 9.
    .(^.
    ....
+```
 
 Turn: 0  
 LetNum Stack:
