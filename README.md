@@ -52,6 +52,10 @@ Then enter your .cube or .dewy file name when prompted
 
 Check out the documentation folder going through each of the files in order.
 
+## Additional Documentation/Links:
+
+Check out the esolangs wiki page: https://esolangs.org/wiki/Cube#:~:text=Cube%20is%20an%20esoteric%20programming,dewy%22.
+
 ## Credits
 
 Ethan Muchnik - Implemented All Interpreter Code and Wrote Original Language Specification
