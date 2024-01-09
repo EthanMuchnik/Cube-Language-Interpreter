@@ -4,9 +4,9 @@ With the understanding of how to input data into the stacks one may wonder, how 
 
 ## Printing Character 
 
-First let's go over the format I will present the Character in below. Essentially what the following format means is that the character is "#" but it needs ln  -> LetNum stack and takes a n -> number from it. Without this prerequisite, an error will be thrown. 
+First let's go over the format I will present the Character in below. Essentially what the following format means is that the character is ";" but it needs ln  -> LetNum stack and takes a n -> number from it. Without this prerequisite, an error will be thrown. 
 
-"ln.n #" -> Take the top element (n) from "LetNum Stack" and print the top (n) next elements from "LetNum Stack"
+"ln.n ;" -> Take the top element (n) from "LetNum Stack" and print the top (n) next elements from "LetNum Stack"
 
 ## More Detailed Clarification
 
