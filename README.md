@@ -22,7 +22,7 @@ The following text file represents a simple example of Cube code:
 
 ## Features
 
-- 2D representation of 3D coding interface.
+- 2D representation of 3D coding interface. 
 - Code intuitively represents an unfolded cube
 - Input/Output Functionality
 - Is primarily run from two Stacks(Operation Stack and Char Stack)
